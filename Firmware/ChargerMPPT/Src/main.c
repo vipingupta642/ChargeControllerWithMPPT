@@ -1,0 +1,21 @@
+#include "main.h"
+
+int main (void) {
+
+  RCC->AHBENR  |= RCC_AHBENR_GPIOCEN;
+
+	GPIOC->MODER &= ~GPIO_MODER_MODER13;
+	GPIOC->MODER |= GPIO_MODER_MODER13_0;	
+
+	GPIOC->MODER &= ~GPIO_MODER_MODER14;
+	GPIOC->MODER |= GPIO_MODER_MODER14_0;		
+
+
+  GPIOC->BSRR |= GPIO_BSRR_BS_13;
+  GPIOC->BSRR |= GPIO_BSRR_BS_14;
+
+  while(1){
+
+  }
+
+}
