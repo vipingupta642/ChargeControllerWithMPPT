@@ -1,11 +1,11 @@
 /********************************************************************************
  * project     Charge controller for solar panel with MPPT algorithm            *
  *                                                                              *
- * file        main.c                                                           *
+ * file        LedAndButton.h                                                   *
  * author      Ila Galkin (aka Nordic Energy)                                   *
  * date        15.07.2019                                                       *
  * copyright   The MIT License (MIT). Copyright (c) 2019 Ilya Galkin            *
- * brief       Main program body                                                *
+ * brief       Work with LED and button on board                                *
  *                                                                              *
  ********************************************************************************/
 
@@ -14,8 +14,6 @@
  ********************************************************************************/
 
 #include "stm32f3xx.h"
-
-#include "LedAndButton.h"
 
 /********************************************************************************
  * Define
@@ -29,8 +27,22 @@
  * User typedef
  ********************************************************************************/
 
+typedef enum {
+    LedOff = 0,
+    LedOn = 1
+} LedStatus;
+
+typedef enum {
+    Red = 0,
+    Blue = 1
+} LedColor;
+
 /********************************************************************************
  * Local function declaration
  ********************************************************************************/
+
+void InitLEDonBoard (void);
+void ControlLedOnBoard (LedColor color, LedStatus status);
+void InitExtiButtonOnBoard (void);
 
 /********************************* END OF FILE **********************************/

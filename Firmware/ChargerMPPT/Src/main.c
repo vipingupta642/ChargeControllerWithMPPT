@@ -1,21 +1,31 @@
+/********************************************************************************
+ * project     Charge controller for solar panel with MPPT algorithm            *
+ *                                                                              *
+ * file        main.c                                                           *
+ * author      Ila Galkin (aka Nordic Energy)                                   *
+ * date        15.07.2019                                                       *
+ * copyright   The MIT License (MIT). Copyright (c) 2019 Ilya Galkin            *
+ * brief       Main program body                                                *
+ *                                                                              *
+ ********************************************************************************/
+
+/********************************************************************************
+ * Include 
+ ********************************************************************************/
+
 #include "main.h"
+
+/********************************************************************************
+ * Main program body
+ ********************************************************************************/
 
 int main (void) {
 
-  RCC->AHBENR  |= RCC_AHBENR_GPIOCEN;
+    InitLEDonBoard();
+    InitExtiButtonOnBoard();
 
-	GPIOC->MODER &= ~GPIO_MODER_MODER13;
-	GPIOC->MODER |= GPIO_MODER_MODER13_0;	
-
-	GPIOC->MODER &= ~GPIO_MODER_MODER14;
-	GPIOC->MODER |= GPIO_MODER_MODER14_0;		
-
-
-  GPIOC->BSRR |= GPIO_BSRR_BS_13;
-  GPIOC->BSRR |= GPIO_BSRR_BS_14;
-
-  while(1){
-
-  }
+    while(1) {}
 
 }
+
+/********************************* END OF FILE **********************************/
