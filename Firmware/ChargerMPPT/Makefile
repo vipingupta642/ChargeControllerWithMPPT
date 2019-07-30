@@ -38,6 +38,7 @@ BUILD_DIR = build
 C_SOURCES =  \
 Src/main.c \
 Src/LedAndButton.c \
+Src/SystemAndClock.c \
 Drivers/CMSIS/Src/system_stm32f3xx.c
 
 # ASM sources
