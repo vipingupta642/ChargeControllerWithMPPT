@@ -46,6 +46,16 @@ void ControlLedOnBoard (LedColor color, LedStatus status) {
 }
 
 /********************************************************************************
+ * Toggle LED
+ ********************************************************************************/
+
+void ToggleLedOnBoard (LedColor color) {
+
+    if (color == Red)   {GPIOC->ODR ^= GPIO_ODR_13;}
+    if (color == Blue)  {GPIOC->ODR ^= GPIO_ODR_14;}
+}
+
+/********************************************************************************
  * Initialization input GPIO and EXTI for button:
  * Button - PC15
  ********************************************************************************/
@@ -72,7 +82,7 @@ void EXTI15_10_IRQHandler (void) {
 
         EXTI->PR |= EXTI_PR_PR15;                   // Reset flag interrupt
 
-        ControlLedOnBoard (Blue, LedOn);
+        ToggleLedOnBoard (Blue);
     }                                      
 }
 

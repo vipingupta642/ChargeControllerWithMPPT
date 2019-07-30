@@ -43,6 +43,7 @@ typedef enum {
 
 void InitLEDonBoard (void);
 void ControlLedOnBoard (LedColor color, LedStatus status);
+void ToggleLedOnBoard (LedColor color);
 void InitExtiButtonOnBoard (void);
 
 /********************************* END OF FILE **********************************/
