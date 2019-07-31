@@ -28,9 +28,9 @@ void InitSystemClockMCU (void) {
     RCC->CR |= RCC_CR_HSEON;                                    // Enable system for external crystall
 	while (!(RCC->CR & RCC_CR_HSERDY));                         // Waiting flag about enable
 
-    FLASH->ACR |= FLASH_ACR_LATENCY_1;                          // Latency for internall flash memory
+    FLASH->ACR |= FLASH_ACR_LATENCY_1;                          // Latency for internal flash memory
 
-    RCC->CFGR  |= RCC_CFGR_PLLMUL6;                             // Select multiplier frequency for PLL
+    RCC->CFGR  |= RCC_CFGR_PLLMUL9;                             // Select multiplier frequency for PLL
 
     RCC->CFGR  |= RCC_CFGR_PLLSRC;                              // Select source external crystall
     RCC->CFGR2 |= RCC_CFGR2_ADCPRE12_DIV10;                     // Select divider for ADC = AHB/10
@@ -55,11 +55,8 @@ void EnableOutputMCO (void) {
 	GPIOA->MODER   |= GPIO_MODER_MODER8_1;						// Output alternative push-pull
 	GPIOA->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR8;					// Very high speed for gpio
 
-	RCC->CFGR |= RCC_CFGR_MCO_PLL;								// Select source PLL
+	RCC->CFGR |= RCC_CFGR_MCO_SYSCLK;							// Select source PLL
 	RCC->CFGR |= RCC_CFGR_PLLNODIV;								// PLL divider for MCO
-
-//	RCC->CFGR |= RCC_CFGR_MCO_SYSCLK;							// Source SYSCLK
-
 }
 
 /********************************* END OF FILE **********************************/
