@@ -6,6 +6,9 @@
 		"main.h": "c",
 		"ledandbutton.h": "c",
 		"stm32f334x8.h": "c",
-		"systemandclock.h": "c"
+		"systemandclock.h": "c",
+		"usart.h": "c",
+		"stdio.h": "c",
+		"highresolutionpwm.h": "c"
 	}
 }

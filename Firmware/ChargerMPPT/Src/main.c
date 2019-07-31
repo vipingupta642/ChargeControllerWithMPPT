@@ -27,6 +27,11 @@ int main (void) {
     InitSystemClockMCU();
     EnableOutputMCO();
 
+    InitUSART1();
+
+    InitHRPWMforConverter();
+    SetDutyTimerB (10000);
+
     while(1) {}
 
 }
