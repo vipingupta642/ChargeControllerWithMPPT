@@ -27,6 +27,8 @@ int main (void) {
     InitSystemClockMCU();
     EnableOutputMCO();
 
+    InitUSART1();
+
     while(1) {}
 
 }
