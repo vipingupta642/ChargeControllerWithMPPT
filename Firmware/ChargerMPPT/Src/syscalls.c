@@ -1,11 +1,11 @@
 /********************************************************************************
  * project     Charge controller for solar panel with MPPT algorithm            *
  *                                                                              *
- * file        LedAndButton.h                                                   *
+ * file        syscalls.c                                                       *
  * author      Ila Galkin (aka Nordic Energy)                                   *
- * date        15.07.2019                                                       *
+ * date        01.08.2019                                                       *
  * copyright   The MIT License (MIT). Copyright (c) 2019 Ilya Galkin            *
- * brief       Work with LED and button on board                                *
+ * brief       System functions for standart library                            *
  *                                                                              *
  ********************************************************************************/
 
@@ -13,39 +13,35 @@
  * Include 
  ********************************************************************************/
 
-#include "stm32f3xx.h"
-
-#include "DebugOutput.h"
-
-/********************************************************************************
- * Define
- ********************************************************************************/
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 /********************************************************************************
- * User enum
+ * Declaration for external functiom output symbol in UART
  ********************************************************************************/
+
+extern int uart_putc (const char ch);
 
 /********************************************************************************
- * User typedef
+ * Standard function output printf
  ********************************************************************************/
 
-typedef enum {
-    LedOff = 0,
-    LedOn = 1
-} LedStatus;
+int _write_r (struct _reent *r, int file, char * ptr, int len) {  
 
-typedef enum {
-    Red = 0,
-    Blue = 1
-} LedColor;
+    r = r;
+    file = file;
+    ptr = ptr;
 
-/********************************************************************************
- * Local function declaration
- ********************************************************************************/
+    int index;
+  
+    for(index=0; index<len; index++) {
 
-void InitLEDonBoard (void);
-void ControlLedOnBoard (LedColor color, LedStatus status);
-void ToggleLedOnBoard (LedColor color);
-void InitExtiButtonOnBoard (void);
-
-/********************************* END OF FILE **********************************/
+        if (ptr[index] == '\n') { uart_putc('\r'); }  
+        uart_putc(ptr[index]);
+    }  
+ 
+    return len;
+}

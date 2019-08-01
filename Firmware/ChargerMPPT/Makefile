@@ -41,6 +41,8 @@ Src/LedAndButton.c \
 Src/SystemAndClock.c \
 Src/USART.c \
 Src/HighResolutionPWM.c \
+Src/DebugOutput.c \
+Src/syscalls.c \
 Drivers/CMSIS/Src/system_stm32f3xx.c
 
 # ASM sources
@@ -126,6 +128,7 @@ LDSCRIPT = STM32F334C8Tx_FLASH.ld
 LIBS = -lc -lm -lnosys 
 LIBDIR = 
 LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
+LDFLAGS += -mcpu=cortex-m4 -mthumb
 
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin

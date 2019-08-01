@@ -13,12 +13,15 @@
  * Include 
  ********************************************************************************/
 
+#include <stdio.h>
+
 #include "stm32f3xx.h"
 
 #include "LedAndButton.h"
 #include "SystemAndClock.h"
-#include "USART.h"
 #include "HighResolutionPWM.h"
+
+#include "DebugOutput.h"
 
 /********************************************************************************
  * Define

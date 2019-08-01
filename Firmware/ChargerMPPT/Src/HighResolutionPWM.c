@@ -19,6 +19,9 @@
  * User variables
  ********************************************************************************/
 
+const uint16_t PeriodTimerB = 50000;
+const uint16_t PeriodTimerMaster = 65000;
+
 /********************************************************************************
  * Initialization GPIO for HRPWM channel B
  * Channel B1 - PA10
@@ -60,7 +63,7 @@ void InitHRPWMforConverter (void) {
     
     HRTIM1->sTimerxRegs[1].OUTxR |= HRTIM_OUTR_DTEN;                                        // Enable dead-time
     HRTIM1->sTimerxRegs[1].DTxR  |= (3 << HRTIM_DTR_DTPRSC_Pos);                            // Set Tdtg = (2^3) * 868 ps = 6.94 ns
-    HRTIM1->sTimerxRegs[1].DTxR  |= (15 << HRTIM_DTR_DTR_Pos) | (15 << HRTIM_DTR_DTF_Pos);	// Set dead-time rising and falling = 15 * Ttg = 104 ns 	
+    HRTIM1->sTimerxRegs[1].DTxR  |= (15 << HRTIM_DTR_DTR_Pos) | (15 << HRTIM_DTR_DTF_Pos);  // Set dead-time rising and falling = 15 * Ttg = 104 ns 	
     HRTIM1->sTimerxRegs[1].DTxR  |= HRTIM_DTR_DTFSLK | HRTIM_DTR_DTRSLK;                    // Lock value dead-time
 
     
