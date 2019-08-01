@@ -83,6 +83,7 @@ void EXTI15_10_IRQHandler (void) {
         EXTI->PR |= EXTI_PR_PR15;                   // Reset flag interrupt
 
         ToggleLedOnBoard (Blue);
+        printf ("Generation interrupt button\n");
     }                                      
 }
 
