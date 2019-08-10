@@ -96,9 +96,8 @@ void USART1_IRQHandler (void) {
 	
 	if (USART1->ISR & USART_ISR_RXNE) {
 
-        USART1->ISR &= ~USART_ISR_RXNE;
-    }
-    
+        USART1->RQR |= USART_RQR_RXFRQ;
+    }  
 		
 }
 
