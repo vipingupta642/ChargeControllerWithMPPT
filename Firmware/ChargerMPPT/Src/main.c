@@ -27,13 +27,26 @@ int main (void) {
     InitSystemClockMCU();
     EnableOutputMCO();
 
+    InitSysTick();
+
     InitUSART1();
-
+   
     InitHRPWMforConverter();
-    SetDutyTimerB (10000);
+    SetDutyTimerB (10000);   
+   
+    InitAdcForFeedback();
 
-    while(1) {}
+    printf ("End basic initialization\n");
+
+    while(1) {
+
+        ToggleLedOnBoard (Blue);
+        Delay (1000);
+        printf ("adcResult = %d\n", adcResult);
+    }
 
 }
 
 /********************************* END OF FILE **********************************/
+
+

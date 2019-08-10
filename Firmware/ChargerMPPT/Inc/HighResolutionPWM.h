@@ -35,6 +35,7 @@
 
 void InitGpioForHRPWM (void);
 void InitHRPWMforConverter (void);
+void SelectEventForExternalGeneration (void);
 void SetDutyTimerB (uint16_t duty);
 
 /********************************* END OF FILE **********************************/
