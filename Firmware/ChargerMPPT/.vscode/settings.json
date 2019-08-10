@@ -10,6 +10,7 @@
 		"usart.h": "c",
 		"stdio.h": "c",
 		"highresolutionpwm.h": "c",
-		"debugoutput.h": "c"
+		"debugoutput.h": "c",
+		"delay.h": "c"
 	}
 }

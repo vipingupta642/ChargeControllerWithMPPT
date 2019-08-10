@@ -66,15 +66,27 @@ void InitHRPWMforConverter (void) {
     HRTIM1->sTimerxRegs[1].DTxR  |= (15 << HRTIM_DTR_DTR_Pos) | (15 << HRTIM_DTR_DTF_Pos);  // Set dead-time rising and falling = 15 * Ttg = 104 ns 	
     HRTIM1->sTimerxRegs[1].DTxR  |= HRTIM_DTR_DTFSLK | HRTIM_DTR_DTRSLK;                    // Lock value dead-time
 
-    
-    HRTIM1->sTimerxRegs[1].SETx1R |= HRTIM_SET1R_PER;	                // Event forces the output to active state for TA1
-    HRTIM1->sTimerxRegs[1].RSTx1R |= HRTIM_RST1R_CMP1;                  // Event forces the output to inactive state for TA1
+    SelectEventForExternalGeneration();                                 // Enable generation event for ADC
+
+    HRTIM1->sTimerxRegs[1].SETx1R |= HRTIM_SET1R_PER;	                // Event forces the output to active state for TB1
+    HRTIM1->sTimerxRegs[1].RSTx1R |= HRTIM_RST1R_CMP1;                  // Event forces the output to inactive state for TB1
 
     HRTIM1->sCommonRegs.OENR |= HRTIM_OENR_TB1OEN | HRTIM_OENR_TB2OEN;  // Enable output PWM for TB1 and TB2
     HRTIM1->sTimerxRegs[1].TIMxCR |= HRTIM_TIMCR_CONT;                  // Continuous mode
 
     HRTIM1->sMasterRegs.MPER = PeriodTimerMaster;                       // Period for master timer
     HRTIM1->sMasterRegs.MCR |= HRTIM_MCR_MCEN | HRTIM_MCR_TBCEN;        // Enable counter for Master and timer B
+}
+
+/********************************************************************************
+ * Select and enable generation event for ADC
+ ********************************************************************************/
+
+void SelectEventForExternalGeneration (void) {
+   
+    HRTIM1->sTimerxRegs[1].CMP2xR = PeriodTimerB / 10;  // Samples in 10% of ON time 
+    HRTIM1->sCommonRegs.CR1 |= HRTIM_CR1_ADC1USRC_1;    // ADC trigger 1 update: Timer B 
+    HRTIM1->sCommonRegs.ADC1R |= HRTIM_ADC1R_AD1TBC2;   // ADC trigger 1 event: Timer B compare 2  
 }
 
 /********************************************************************************

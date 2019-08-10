@@ -1,11 +1,11 @@
 /********************************************************************************
  * project     Charge controller for solar panel with MPPT algorithm            *
  *                                                                              *
- * file        main.c                                                           *
+ * file        VoltageAndCurrentAdc.h                                           *
  * author      Ila Galkin (aka Nordic Energy)                                   *
- * date        15.07.2019                                                       *
+ * date        09.08.2019                                                       *
  * copyright   The MIT License (MIT). Copyright (c) 2019 Ilya Galkin            *
- * brief       Main program body                                                *
+ * brief       Work with ADC for measuring voltage and current                  *
  *                                                                              *
  ********************************************************************************/
 
@@ -13,27 +13,15 @@
  * Include 
  ********************************************************************************/
 
-#include <stdio.h>
-
 #include "stm32f3xx.h"
-
-#include "LedAndButton.h"
-#include "SystemAndClock.h"
-#include "HighResolutionPWM.h"
-#include "VoltageAndCurrentAdc.h"
-
-#include "DebugOutput.h"
-#include "Delay.h"
 
 /********************************************************************************
  * Define
- ********************************************************************************/
+ ********************************************************************************/    
 
 /********************************************************************************
- * External variable
+ * User enum
  ********************************************************************************/
-
-extern uint16_t adcResult;
 
 /********************************************************************************
  * User typedef
@@ -42,5 +30,9 @@ extern uint16_t adcResult;
 /********************************************************************************
  * Local function declaration
  ********************************************************************************/
+
+void InitGpioForFeedbackAdc (void);
+void StartCallibrationForADC (void);
+void InitAdcForFeedback (void);
 
 /********************************* END OF FILE **********************************/

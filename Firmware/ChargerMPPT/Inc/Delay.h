@@ -1,11 +1,11 @@
 /********************************************************************************
  * project     Charge controller for solar panel with MPPT algorithm            *
  *                                                                              *
- * file        main.c                                                           *
+ * file        VoltageAndCurrentAdc.h                                           *
  * author      Ila Galkin (aka Nordic Energy)                                   *
- * date        15.07.2019                                                       *
+ * date        09.08.2019                                                       *
  * copyright   The MIT License (MIT). Copyright (c) 2019 Ilya Galkin            *
- * brief       Main program body                                                *
+ * brief       Adding function delay for SysTick timer                          *
  *                                                                              *
  ********************************************************************************/
 
@@ -13,34 +13,19 @@
  * Include 
  ********************************************************************************/
 
-#include <stdio.h>
-
 #include "stm32f3xx.h"
-
-#include "LedAndButton.h"
-#include "SystemAndClock.h"
-#include "HighResolutionPWM.h"
-#include "VoltageAndCurrentAdc.h"
-
-#include "DebugOutput.h"
-#include "Delay.h"
-
-/********************************************************************************
- * Define
- ********************************************************************************/
 
 /********************************************************************************
  * External variable
  ********************************************************************************/
 
-extern uint16_t adcResult;
-
-/********************************************************************************
- * User typedef
- ********************************************************************************/
+extern volatile uint32_t delayCounter;
 
 /********************************************************************************
  * Local function declaration
  ********************************************************************************/
+
+void InitSysTick (void);
+void Delay (uint32_t milliseconds);
 
 /********************************* END OF FILE **********************************/

@@ -43,6 +43,8 @@ Src/USART.c \
 Src/HighResolutionPWM.c \
 Src/DebugOutput.c \
 Src/syscalls.c \
+Src/VoltageAndCurrentAdc.c \
+Src/Delay.c \
 Drivers/CMSIS/Src/system_stm32f3xx.c
 
 # ASM sources

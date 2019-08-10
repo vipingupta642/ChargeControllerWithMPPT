@@ -16,7 +16,7 @@
 #include "DebugOutput.h"
 
 /********************************************************************************
- * Output symbol for standart pintf
+ * Output symbol for standart printf
  ********************************************************************************/
 
 int uart_putc (const char ch) {

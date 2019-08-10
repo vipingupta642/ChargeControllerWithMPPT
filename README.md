@@ -43,9 +43,9 @@
 # Используемые инструменты
 
 * [Altium Designer](https://www.altium.com/altium-designer/ "Официальный сайт CAD")
-* [Visual Studio 2019](https://visualstudio.microsoft.com/ru/vs/ "Официальный сайт IDE")
-* [VisualGDB](https://visualgdb.com/download/ "Официальный сайт плагина")
-* [PVS-Studio](https://www.viva64.com/ru/pvs-studio/ "Официальный сайт")
+* [Visual Studio Code](https://code.visualstudio.com/ "Официальный сайт IDE")
+* [GNU Arm Embedded Toolchain](https://github.com/gnu-mcu-eclipse/arm-none-eabi-gcc/releases/tag/v8.2.1-1.4 "Официальный сайт плагина")
+* [JLink](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack "Официальный сайт")
 
 # Лицензирование
 
