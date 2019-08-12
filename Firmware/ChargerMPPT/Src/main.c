@@ -41,8 +41,12 @@ int main (void) {
     while(1) {
 
         ToggleLedOnBoard (Blue);
-        Delay (1000);
-        printf ("adcResult = %d\n", adcResult);
+        Delay (2000);
+        printf ("New data feedback:\n");
+        printf ("Vin = %d\n", adcResult1);
+        printf ("Iin = %d\n", adcResult2);
+        printf ("Vout = %d\n", adcResult3);
+        printf ("Iin = %d\n", adcResult4);
     }
 
 }
