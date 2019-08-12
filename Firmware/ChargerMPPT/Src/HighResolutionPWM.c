@@ -19,8 +19,8 @@
  * User variables
  ********************************************************************************/
 
-const uint16_t PeriodTimerB = 50000;
-const uint16_t PeriodTimerMaster = 65000;
+const uint16_t PeriodTimerB = 45000;
+const uint16_t PeriodTimerMaster = 45000;
 
 /********************************************************************************
  * Initialization GPIO for HRPWM channel B
@@ -85,8 +85,8 @@ void InitHRPWMforConverter (void) {
 void SelectEventForExternalGeneration (void) {
    
     HRTIM1->sTimerxRegs[1].CMP2xR = PeriodTimerB / 10;  // Samples in 10% of ON time 
-    HRTIM1->sCommonRegs.CR1 |= HRTIM_CR1_ADC1USRC_1;    // ADC trigger 1 update: Timer B 
-    HRTIM1->sCommonRegs.ADC1R |= HRTIM_ADC1R_AD1TBC2;   // ADC trigger 1 event: Timer B compare 2  
+    HRTIM1->sCommonRegs.CR1 |= HRTIM_CR1_ADC2USRC_1;    // ADC trigger 2 update: Timer B 
+    HRTIM1->sCommonRegs.ADC2R |= HRTIM_ADC2R_AD2TBC2;   // ADC trigger 2 event: Timer B compare 2  
 }
 
 /********************************************************************************

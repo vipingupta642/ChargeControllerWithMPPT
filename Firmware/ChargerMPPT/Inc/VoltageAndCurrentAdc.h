@@ -32,7 +32,7 @@
  ********************************************************************************/
 
 void InitGpioForFeedbackAdc (void);
-void StartCallibrationForADC (void);
+void StartCallibrationForAdc (void);
 void InitAdcForFeedback (void);
 
 /********************************* END OF FILE **********************************/

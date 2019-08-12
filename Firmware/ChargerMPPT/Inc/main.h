@@ -33,7 +33,10 @@
  * External variable
  ********************************************************************************/
 
-extern uint16_t adcResult;
+extern uint16_t adcResult1;
+extern uint16_t adcResult2;
+extern uint16_t adcResult3;
+extern uint16_t adcResult4;
 
 /********************************************************************************
  * User typedef

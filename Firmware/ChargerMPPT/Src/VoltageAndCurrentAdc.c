@@ -19,7 +19,12 @@
  * Used variable
  ********************************************************************************/
 
-uint16_t adcResult = 0;
+//uint16_t adcResult = 0;
+
+uint16_t adcResult1 = 0;
+uint16_t adcResult2 = 0;
+uint16_t adcResult3 = 0;
+uint16_t adcResult4 = 0;
 
 /********************************************************************************
  * Initialization GPIO for ADC
@@ -39,9 +44,9 @@ void InitGpioForFeedbackAdc (void) {
  * Callibration for ADC
  ********************************************************************************/
 
-void StartCallibrationForADC (void) {
+void StartCallibrationForAdc (void) {
 
-	ADC2->CR &= ~ADC_CR_ADVREGEN;
+    ADC2->CR &= ~ADC_CR_ADVREGEN;
 	ADC2->CR |= ADC_CR_ADVREGEN_0;		// Enable Vref
 	ADC2->CR &= ~ADC_CR_ADCALDIF;
 
@@ -55,22 +60,18 @@ void StartCallibrationForADC (void) {
 
 void InitAdcForFeedback (void) {
 
-    RCC->AHBENR |= RCC_AHBENR_ADC12EN;
+    RCC->AHBENR |= RCC_AHBENR_ADC12EN;          // Clock enable for ADC1 and ADC2
 
     InitGpioForFeedbackAdc();
-    StartCallibrationForADC();
- 
-    ADC2->CFGR |= ADC_CFGR_EXTEN_0;                                             // Enable start conversion external trigger
-    ADC2->CFGR |= ADC_CFGR_EXTSEL_0 | ADC_CFGR_EXTSEL_1 | ADC_CFGR_EXTSEL_2;    // Event 7 - HRTIM		
+    StartCallibrationForAdc();
 
-    ADC2->SQR1 |= ADC_SQR1_SQ1_1;	// Select ADC2 channel IN2								
-    ADC2->SQR1 &= ~ADC_SQR1_L;	    // Length regular ADC channel = 1													
+    ADC2->JSQR |= 0x04214467;                   // Lenght = 4, Trigger = event 9, Type trigger = rising edge, Channel = IN4, IN5, IN2 and IN1
 
-    ADC2->IER |= ADC_IER_EOCIE;     // Interrupt enable
-    NVIC_EnableIRQ(ADC1_2_IRQn);    // enable interrupt ADC1 and ADC2
+    ADC2->IER |= ADC_IER_JEOCIE;                // Interrupt enable
+    NVIC_EnableIRQ(ADC1_2_IRQn);                // Enable interrupt ADC1 and ADC2
 
     ADC2->CR |= ADC_CR_ADEN;        // Enable ADC2
-    ADC2->CR |= ADC_CR_ADSTART;     // Start ADC2
+    ADC2->CR |= ADC_CR_JADSTART;    // Enable injector conversion
 }
 
 /********************************************************************************
@@ -79,7 +80,10 @@ void InitAdcForFeedback (void) {
 
 void ADC1_2_IRQHandler (void) {
 
-	ADC2->ISR |= ADC_ISR_EOC;
+	ADC2->ISR |= ADC_ISR_JEOC;
 
-	adcResult = ADC2->DR;
+    adcResult1 = ADC2->JDR1;
+    adcResult2 = ADC2->JDR2;
+    adcResult3 = ADC2->JDR3;
+    adcResult4 = ADC2->JDR4;
 }
