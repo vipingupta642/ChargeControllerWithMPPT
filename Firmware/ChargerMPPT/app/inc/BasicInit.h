@@ -1,11 +1,11 @@
 /********************************************************************************
  * project     Charge controller for solar panel with MPPT algorithm            *
  *                                                                              *
- * file        USART.h                                                          *
+ * file        BasicInit.h                                                      *
  * author      Ila Galkin (aka Nordic Energy)                                   *
- * date        31.07.2019                                                       *
+ * date        14.08.2019                                                       *
  * copyright   The MIT License (MIT). Copyright (c) 2019 Ilya Galkin            *
- * brief       Work with transceiver for USART1                                 *
+ * brief       Basic initialization for peripheral                              *
  *                                                                              *
  ********************************************************************************/
 
@@ -15,26 +15,13 @@
 
 #include "stm32f3xx.h"
 
-/********************************************************************************
- * Define
- ********************************************************************************/   
-
-/********************************************************************************
- * User enum
- ********************************************************************************/
-
-/********************************************************************************
- * User typedef
- ********************************************************************************/
+#include "LedAndButton.h"
+#include "SystemAndClock.h"
 
 /********************************************************************************
  * Local function declaration
  ********************************************************************************/
 
-void InitGpioForUSART1 (void);
-void InitUSART1 (void);
-void SendSymbolForUSART (char chr);
-void SendByteForUSART (uint8_t data);
-void SendStringForUSART (char* str);
+void BasicInitPeripheral (void);
 
 /********************************* END OF FILE **********************************/

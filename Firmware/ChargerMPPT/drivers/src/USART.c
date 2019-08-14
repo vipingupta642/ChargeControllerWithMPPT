@@ -45,7 +45,7 @@ void InitGpioForUSART1 (void) {
  * Divider: 72 000 000 Hz / 921 600 baud = 78 = 0x4E
  ********************************************************************************/
 
-void InitUSART1 (void) {
+void InitUSARTforDebug (void) {
 
     InitGpioForUSART1();
 

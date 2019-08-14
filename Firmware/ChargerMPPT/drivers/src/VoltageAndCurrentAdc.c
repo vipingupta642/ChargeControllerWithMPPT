@@ -28,16 +28,15 @@ uint16_t adcResult4 = 0;
 
 /********************************************************************************
  * Initialization GPIO for ADC
- * Voltage input  - ADC2 channel 4 - PA7
- * Current input  - ADC2 channel 5 - PB0
- * Voltage output - ADC2 channel 2 - PA5
  * Current output - ADC2 channel 1 - PA4
+ * Voltage output - ADC2 channel 2 - PA5
+ * Current input  - ADC2 channel 3 - PA6
+ * Voltage input  - ADC2 channel 4 - PA7
  ********************************************************************************/
 
 void InitGpioForFeedbackAdc (void) {
 
     RCC->AHBENR  |= RCC_AHBENR_GPIOAEN;     // Clock enable for GPIO port A
-    RCC->AHBENR  |= RCC_AHBENR_GPIOBEN;     // Clock enable for GPIO port B 
 }
 
 /********************************************************************************
@@ -60,18 +59,20 @@ void StartCallibrationForAdc (void) {
 
 void InitAdcForFeedback (void) {
 
-    RCC->AHBENR |= RCC_AHBENR_ADC12EN;          // Clock enable for ADC1 and ADC2
+    RCC->AHBENR |= RCC_AHBENR_ADC12EN;      // Clock enable for ADC1 and ADC2
 
     InitGpioForFeedbackAdc();
     StartCallibrationForAdc();
 
-    ADC2->JSQR |= 0x04214467;                   // Lenght = 4, Trigger = event 9, Type trigger = rising edge, Channel = IN4, IN5, IN2 and IN1
+    ADC2->JSQR |= 0x10308167;               // Lenght = 4, Trigger = event 9, Type trigger = rising edge, Channel = IN1, IN2, IN3 and IN4
 
-    ADC2->IER |= ADC_IER_JEOCIE;                // Interrupt enable
-    NVIC_EnableIRQ(ADC1_2_IRQn);                // Enable interrupt ADC1 and ADC2
+    ADC2->IER |= ADC_IER_JEOSIE;            // Interrupt enable
+    NVIC_EnableIRQ(ADC1_2_IRQn);            // Enable interrupt ADC1 and ADC2
 
-    ADC2->CR |= ADC_CR_ADEN;        // Enable ADC2
-    ADC2->CR |= ADC_CR_JADSTART;    // Enable injector conversion
+    ADC2->CR |= ADC_CR_ADEN;                // Enable ADC2
+    while(!(ADC2->ISR & ADC_ISR_ADRDY));    // Wait ready ADC2
+
+    ADC2->CR |= ADC_CR_JADSTART;            // Enable injector conversion
 }
 
 /********************************************************************************
@@ -80,7 +81,7 @@ void InitAdcForFeedback (void) {
 
 void ADC1_2_IRQHandler (void) {
 
-	ADC2->ISR |= ADC_ISR_JEOC;
+	ADC2->ISR |= ADC_ISR_JEOS;
 
     adcResult1 = ADC2->JDR1;
     adcResult2 = ADC2->JDR2;
