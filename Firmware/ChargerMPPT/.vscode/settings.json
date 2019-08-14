@@ -12,6 +12,9 @@
 		"highresolutionpwm.h": "c",
 		"debugoutput.h": "c",
 		"delay.h": "c",
-		"voltageandcurrentadc.h": "c"
+		"voltageandcurrentadc.h": "c",
+		"basicinit.h": "c",
+		"systemmonitor.h": "c",
+		"chargeforbattery.h": "c"
 	}
 }

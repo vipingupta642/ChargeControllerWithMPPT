@@ -37,7 +37,7 @@
 		{
 			"label": "Write to Flash MCU",
 			"type": "shell",
-			"command": "JLink.exe -Device STM32F334C8 -If SWD -Speed 1000 JLink\\FlashMCU.jlink",
+			"command": "JLink.exe -Device STM32F334C8 -If SWD -Speed 1000 jlink\\FlashMCU.jlink",
 			"options": {
 				"cwd": "${workspaceRoot}",
 				"shell": {
@@ -54,7 +54,7 @@
 		{
 			"label": "Read Flash from MCU",
 			"type": "shell",
-			"command": "JLink.exe -Device STM32F334C8 -If SWD -Speed 1000 JLink\\ReadMCU.jlink",
+			"command": "JLink.exe -Device STM32F334C8 -If SWD -Speed 1000 jlink\\ReadMCU.jlink",
 			"options": {
 				"cwd": "${workspaceRoot}",
 				"shell": {
@@ -71,7 +71,7 @@
 		{
 			"label": "Erase Flash MCU",
 			"type": "shell",
-			"command": "JLink.exe -Device STM32F334C8 -If SWD -Speed 1000 JLink\\EraseMCU.jlink",
+			"command": "JLink.exe -Device STM32F334C8 -If SWD -Speed 1000 jlink\\EraseMCU.jlink",
 			"options": {
 				"cwd": "${workspaceRoot}",
 				"shell": {
@@ -88,7 +88,7 @@
 		{
 			"label": "Reset MCU",
 			"type": "shell",
-			"command": "JLink.exe -Device STM32F334C8 -If SWD -Speed 1000 JLink\\ResetMCU.jlink",
+			"command": "JLink.exe -Device STM32F334C8 -If SWD -Speed 1000 jlink\\ResetMCU.jlink",
 			"options": {
 				"cwd": "${workspaceRoot}",
 				"shell": {

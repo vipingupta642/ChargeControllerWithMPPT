@@ -20,33 +20,18 @@
  ********************************************************************************/
 
 int main (void) {
-
-    InitLEDonBoard();
-    InitExtiButtonOnBoard();
-
-    InitSystemClockMCU();
-    EnableOutputMCO();
-
-    InitSysTick();
-
-    InitUSART1();
    
-    InitHRPWMforConverter();
-    SetDutyTimerB (10000);   
-   
-    InitAdcForFeedback();
-
-    printf ("End basic initialization\n");
+    BasicInitPeripheral();
+    StartSystemMonitoring();
+    
+    StartChargeBattery();  
+    SetDutyTimerB (27000);
+    printf ("End initialization MCU\n");
 
     while(1) {
 
         ToggleLedOnBoard (Blue);
-        Delay (2000);
-        printf ("New data feedback:\n");
-        printf ("Vin = %d\n", adcResult1);
-        printf ("Iin = %d\n", adcResult2);
-        printf ("Vout = %d\n", adcResult3);
-        printf ("Iin = %d\n", adcResult4);
+        Delay (1000);
     }
 
 }

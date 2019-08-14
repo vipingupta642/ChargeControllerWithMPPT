@@ -36,20 +36,23 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Src/main.c \
-Src/LedAndButton.c \
-Src/SystemAndClock.c \
-Src/USART.c \
-Src/HighResolutionPWM.c \
-Src/DebugOutput.c \
-Src/syscalls.c \
-Src/VoltageAndCurrentAdc.c \
-Src/Delay.c \
-Drivers/CMSIS/Src/system_stm32f3xx.c
+app/src/main.c \
+app/src/BasicInit.c \
+app/src/ChargeForBattery.c \
+drivers/src/LedAndButton.c \
+drivers/src/SystemAndClock.c \
+drivers/src/USART.c \
+drivers/src/HighResolutionPWM.c \
+drivers/src/VoltageAndCurrentAdc.c \
+system/src/DebugOutput.c \
+system/src/syscalls.c \
+system/src/Delay.c \
+system/src/SystemMonitor.c \
+cmsis/device/src/system_stm32f3xx.c
 
 # ASM sources
 ASM_SOURCES =  \
-startup_stm32f334x8.s
+startup/startup_stm32f334x8.s
 
 
 #######################################
@@ -102,8 +105,11 @@ AS_INCLUDES =
 
 # C includes
 C_INCLUDES =  \
--IInc \
--IDrivers/CMSIS/Inc
+-Iapp/inc \
+-Icmsis/core \
+-Icmsis/device/inc \
+-Idrivers/inc \
+-Isystem/inc
 
 
 # compile gcc flags
@@ -124,7 +130,7 @@ CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = STM32F334C8Tx_FLASH.ld
+LDSCRIPT = ldsript/STM32F334C8Tx_FLASH.ld
 
 # libraries
 LIBS = -lc -lm -lnosys 

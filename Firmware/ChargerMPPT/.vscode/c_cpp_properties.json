@@ -4,22 +4,23 @@
             "name": "arm_c_cpp_properties",
             "compilerPath": "C:/Software/EmbeddedGCC/arm_gcc/bin/arm-none-eabi-gcc.exe",
             "includePath": [
-				"C:/Software/EmbeddedGCC/arm_gcc/arm-none-eabi/include",
-				"C:/Software/EmbeddedGCC/arm_gcc/arm-none-eabi/include/sys/",
-				"C:/Software/EmbeddedGCC/arm_gcc/lib/**",
-
-				"${workspaceRoot}\\Drivers\\**",
-				"${workspaceRoot}\\Src\\**",
-				"${workspaceRoot}\\Inc\\**"
+                "C:/Software/EmbeddedGCC/arm_gcc/arm-none-eabi/include",
+                "C:/Software/EmbeddedGCC/arm_gcc/arm-none-eabi/include/sys/",
+                "C:/Software/EmbeddedGCC/arm_gcc/lib/**",
+                "${workspaceRoot}\\app\\**",
+                "${workspaceRoot}\\cmsis\\**",
+                "${workspaceRoot}\\drivers\\**",
+                "${workspaceRoot}\\system\\**",
+                "${workspaceFolder}/drivers/inc"
             ],
             "defines": [
-				"STM32F334x8",
-				"M4",
-				"GCC_ARMCM4"
+                "STM32F334x8",
+                "M4",
+                "GCC_ARMCM4"
             ],
             "cStandard": "c11",
             "cppStandard": "c++17",
-			"intelliSenseMode": "gcc-x64"
+            "intelliSenseMode": "gcc-x64"
         }
     ],
     "version": 4
