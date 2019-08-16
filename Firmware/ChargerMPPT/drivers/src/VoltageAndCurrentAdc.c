@@ -19,12 +19,29 @@
  * Used variable
  ********************************************************************************/
 
-//uint16_t adcResult = 0;
+float resultCurrentOutput = 0;
+float resultVoltageOutput = 0;
+float resultCurrentInput = 0;
+float resultVoltageInput = 0;
 
-uint16_t adcResult1 = 0;
-uint16_t adcResult2 = 0;
-uint16_t adcResult3 = 0;
-uint16_t adcResult4 = 0;
+uint8_t stepFilterForAdc = 0;
+const uint8_t allStepFilterAdc = 10;
+
+float bufferCurrentOutput = 0;
+float bufferVoltageOutput = 0;
+float bufferCurrentInput = 0;
+float bufferVoltageInput = 0;
+
+const float referenceVoltageForAdc = 0.000807;      // Step = VDDA / 4096
+
+const float offsetForOutputCurrentSensor = 0.516;   // Voltage offset 10% * VCC sensor
+const float offsetForInputCurrentSensor = 0.52;    // Voltage offset 10% * VCC sensor
+const float SensitivityCurrentSensor = 0.133;       // Sensitivity sensor 133 mV/A
+
+const float dividerResistorCurrentOutput = 1.56;    // Divider = (5.6 kOhm / 10 kOhm) + 1 
+const float dividerResistorVoltageOutput = 9.2;     // Divider = (82 kOhm / 10 kOhm) + 1
+const float dividerResistorCurrentInput = 1.56;     // Divider = (5.6 kOhm / 10 kOhm) + 1
+const float deviderResistorVoltageInput = 18.8571;  // Divider = (100 kOhm / 5.6 kOhm) + 1
 
 /********************************************************************************
  * Initialization GPIO for ADC
@@ -83,8 +100,27 @@ void ADC1_2_IRQHandler (void) {
 
 	ADC2->ISR |= ADC_ISR_JEOS;
 
-    adcResult1 = ADC2->JDR1;
-    adcResult2 = ADC2->JDR2;
-    adcResult3 = ADC2->JDR3;
-    adcResult4 = ADC2->JDR4;
+    bufferCurrentOutput += (dividerResistorCurrentOutput * referenceVoltageForAdc * (ADC2->JDR1) - offsetForOutputCurrentSensor) / SensitivityCurrentSensor;
+    bufferVoltageOutput += dividerResistorVoltageOutput * referenceVoltageForAdc * (ADC2->JDR2);
+    bufferCurrentInput += (dividerResistorCurrentInput * referenceVoltageForAdc * (ADC2->JDR3) - offsetForInputCurrentSensor) / SensitivityCurrentSensor;
+    bufferVoltageInput += deviderResistorVoltageInput * referenceVoltageForAdc * (ADC2->JDR4);
+
+    stepFilterForAdc++;
+
+    if (stepFilterForAdc == allStepFilterAdc) {
+
+        resultCurrentOutput = bufferCurrentOutput / allStepFilterAdc;
+        resultVoltageOutput = bufferVoltageOutput / allStepFilterAdc; 
+        resultCurrentInput = bufferCurrentInput / allStepFilterAdc;
+        resultVoltageInput = bufferVoltageInput / allStepFilterAdc;
+
+        bufferCurrentOutput = 0;
+        bufferVoltageOutput = 0;
+        bufferCurrentInput = 0;
+        bufferVoltageInput = 0;
+
+        stepFilterForAdc = 0;
+    }
 }
+
+/********************************* END OF FILE **********************************/

@@ -12,6 +12,7 @@
 /********************************************************************************
  * Include 
  ********************************************************************************/
+#pragma once 
 
 #include "stm32f3xx.h"
 
@@ -33,6 +34,7 @@
  * Local function declaration
  ********************************************************************************/
 
+void StopAllConverter (void);
 void InitGpioForHRPWM (void);
 void InitHRPWMforConverter (void);
 void SelectEventForExternalGeneration (void);

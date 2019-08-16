@@ -10,8 +10,7 @@
                 "${workspaceRoot}\\app\\**",
                 "${workspaceRoot}\\cmsis\\**",
                 "${workspaceRoot}\\drivers\\**",
-                "${workspaceRoot}\\system\\**",
-                "${workspaceFolder}/drivers/inc"
+                "${workspaceRoot}\\system\\**"
             ],
             "defines": [
                 "STM32F334x8",

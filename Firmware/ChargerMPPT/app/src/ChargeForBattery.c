@@ -25,4 +25,17 @@ void StartChargeBattery (void) {
     InitAdcForFeedback();
 }
 
+/********************************************************************************
+ * Control output dc/dc converter
+ * PB14 - enable/disable output transistor with pull-up resistor
+ * Logic 1 - disable output
+ * Logic 0 - enable output
+ ********************************************************************************/
+
+void ControlOutputConverter (ConverterStatus status) {
+
+    if (status == Enable)  { GPIOB->BSRR |= GPIO_BSRR_BR_14; }
+    if (status == Disable) { GPIOB->BSRR |= GPIO_BSRR_BS_14; }   
+}
+
 /********************************* END OF FILE **********************************/

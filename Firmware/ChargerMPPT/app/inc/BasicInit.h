@@ -13,6 +13,8 @@
  * Include 
  ********************************************************************************/
 
+#pragma once 
+
 #include "stm32f3xx.h"
 
 #include "LedAndButton.h"

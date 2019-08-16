@@ -23,6 +23,37 @@ const uint16_t PeriodTimerB = 45000;
 const uint16_t PeriodTimerMaster = 45000;
 
 /********************************************************************************
+ * Disable output gpio for PWM channel A, B, C and D
+ * Set all gpio in logic 0 only PB14 set logic 1
+ * Setting PB14 in logic 1 disabling output transistor
+ ********************************************************************************/
+
+void StopAllConverter (void) {
+
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN | RCC_AHBENR_GPIOBEN;
+
+    GPIOA->MODER |= GPIO_MODER_MODER8_0;
+    GPIOA->MODER |= GPIO_MODER_MODER9_0;
+    GPIOA->MODER |= GPIO_MODER_MODER10_0;
+    GPIOA->MODER |= GPIO_MODER_MODER11_0;
+
+    GPIOB->MODER |= GPIO_MODER_MODER12_0;
+    GPIOB->MODER |= GPIO_MODER_MODER13_0;
+    GPIOB->MODER |= GPIO_MODER_MODER14_0;
+    GPIOB->MODER |= GPIO_MODER_MODER15_0;
+
+    GPIOA->BSRR |= GPIO_BSRR_BR_8;
+    GPIOA->BSRR |= GPIO_BSRR_BR_9;
+    GPIOA->BSRR |= GPIO_BSRR_BR_10;
+    GPIOA->BSRR |= GPIO_BSRR_BR_11;
+
+    GPIOB->BSRR |= GPIO_BSRR_BR_12;
+    GPIOB->BSRR |= GPIO_BSRR_BR_13;
+    GPIOB->BSRR |= GPIO_BSRR_BS_14;
+    GPIOB->BSRR |= GPIO_BSRR_BR_15;
+}
+
+/********************************************************************************
  * Initialization GPIO for HRPWM channel B
  * Channel B1 - PA10
  * Channel B2 - PA11
@@ -32,9 +63,11 @@ void InitGpioForHRPWM (void) {
 
     RCC->AHBENR  |= RCC_AHBENR_GPIOAEN;             // Enable clock for GPIO port A
 
+    GPIOA->MODER &= ~GPIO_MODER_MODER10;
 	GPIOA->MODER   |= GPIO_MODER_MODER10_1;         // Output alternative push-pull
 	GPIOA->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR10;      // Select very high speed for gpio
 
+    GPIOA->MODER &= ~GPIO_MODER_MODER11;
 	GPIOA->MODER   |= GPIO_MODER_MODER11_1;
 	GPIOA->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR11;
 
