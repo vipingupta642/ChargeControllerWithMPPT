@@ -12,6 +12,7 @@
 /********************************************************************************
  * Include 
  ********************************************************************************/
+#pragma once 
 
 #include "stm32f3xx.h"
 
@@ -22,10 +23,10 @@
  * External variable
  ********************************************************************************/
 
-extern uint16_t adcResult1;
-extern uint16_t adcResult2;
-extern uint16_t adcResult3;
-extern uint16_t adcResult4;
+extern float resultCurrentOutput;
+extern float resultVoltageOutput;
+extern float resultCurrentInput;
+extern float resultVoltageInput;
 
 /********************************************************************************
  * Local function declaration
