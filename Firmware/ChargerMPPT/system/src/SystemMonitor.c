@@ -27,7 +27,7 @@ void StartSystemMonitoring (void) {
 }
 
 /********************************************************************************
- * Initialization timer (TIM6) for output debug infirmation
+ * Initialization timer (TIM6) for output debug information
  * Prescaler for 0.5 ms: 72 000 000 / 36 000 = 2000 Hz
  * Set period
  ********************************************************************************/
@@ -56,10 +56,10 @@ void TIM6_DAC1_IRQHandler (void) {
     printf (" \n");
 	printf ("New data feedback:\n");
 
-    printf ("Iout = %d\n", adcResult1);
-    printf ("Vout = %d\n", adcResult2);
-    printf ("Iin = %d\n",  adcResult3);
-    printf ("Vin = %d\n",  adcResult4);
+    printf ("Iout = %.2fA\n", resultCurrentOutput);
+    printf ("Vout = %.2fV\n", resultVoltageOutput);
+    printf ("Iin = %.2fA\n",  resultCurrentInput);
+    printf ("Vin = %.2fV\n",  resultVoltageInput);
 }
 
 /********************************* END OF FILE **********************************/

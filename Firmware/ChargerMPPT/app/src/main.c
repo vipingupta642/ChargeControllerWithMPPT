@@ -20,12 +20,17 @@
  ********************************************************************************/
 
 int main (void) {
+
+    StopAllConverter();
    
     BasicInitPeripheral();
     StartSystemMonitoring();
     
     StartChargeBattery();  
     SetDutyTimerB (27000);
+
+    ControlOutputConverter (Enable);
+
     printf ("End initialization MCU\n");
 
     while(1) {

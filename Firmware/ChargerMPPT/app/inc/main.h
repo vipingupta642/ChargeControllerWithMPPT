@@ -13,11 +13,12 @@
  * Include 
  ********************************************************************************/
 
+#pragma once 
+
 #include "stm32f3xx.h"
 
 #include "BasicInit.h"
 #include "ChargeForBattery.h"
-
 #include "SystemMonitor.h"
 
 /********************************* END OF FILE **********************************/
