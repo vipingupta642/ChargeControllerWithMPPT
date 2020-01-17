@@ -16,7 +16,7 @@
 * Рабочая частота: *100кГц*
 * КПД, не менее: *94%*
 * Алгоритмы МРРТ: *да*
-* Интерфейсы: *USB, RS485*
+* Интерфейсы: *CAN*
 * Габаритные размеры: *110х90х20мм*
 * Температура эксплуатации: *-20...+65<sup>o</sup>C*
 
@@ -44,8 +44,6 @@
 
 * [Altium Designer](https://www.altium.com/altium-designer/ "Официальный сайт CAD")
 * [Visual Studio Code](https://code.visualstudio.com/ "Официальный сайт IDE")
-* [GNU Arm Embedded Toolchain](https://github.com/gnu-mcu-eclipse/arm-none-eabi-gcc/releases/tag/v8.2.1-1.4 "Официальный сайт плагина")
-* [JLink](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack "Официальный сайт")
 
 # Лицензирование
 
