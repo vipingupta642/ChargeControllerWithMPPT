@@ -1,6 +1,0 @@
-r
-loadbin build\ChargerMPPT.bin, 0x00
-verifybin build\ChargerMPPT.bin, 0x00
-r
-g
-q
