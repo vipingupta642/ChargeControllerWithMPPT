@@ -89,7 +89,7 @@ GenerateClassCluster=0
 DocumentUniqueId=AQYCIEWA
 
 [Document4]
-DocumentPath=PcbForController.PcbDocMPPT.PcbDoc
+DocumentPath=PcbForControllerMPPT.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
